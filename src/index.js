@@ -5,23 +5,19 @@ import dotenv from "dotenv";
 dotenv.config({
   path: "./.env",
 });
-connectDB();
- 
+connectDB()
+
+.then(() => { 
+  app.listen(process.env.PORT, () => {
+    console.log(process.env.PORT || 8080, () => {
+      console.log(`Server is running on port ${process.env.PORT}`);
+    });
+  });
+})
 
 
-
-// import express from "express";
-
-// (async () => {
-//   try {
-//     await mongoose.connect(process.env.MONGO_URI, {
-//       dbName: backendDB,
-//     });
-//     console.log("MongoDB connected");
-//   } catch (error) {
-//     console.error("MongoDB connection error:", error);
-//     throw error;
-//   }
-// })();
+.catch((error) => {
+  console.error("Database connection error:", error);
+});
 
  
